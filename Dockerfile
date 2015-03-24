@@ -1,4 +1,7 @@
 FROM ubuntu
 MAINTAINER nfritz@us.ibm.com
-COPY hello.sh /tmp/
-ENTRYPOINT /tmp/hello.sh
+RUN mkdir /tmp/webhello/
+COPY index.html /tmp/webhello/
+RUN sudo apt-get -y install python
+EXPOSE 8000
+ENTRYPOINT cd /tmp/webhello;python -m SimpleHTTPServer
